@@ -66,7 +66,7 @@ def registration():
             return make_response(jsonify({ "db_error": "Failed to add the reord to db"}), 513)
 
 @app.route("/submittodoitem", methods=["POST"])
-def registration():
+def addtodo():
     jsonData = request.get_json()
     form_errors = {}
    
