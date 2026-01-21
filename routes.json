@@ -1,14 +1,8 @@
 [
     {
-        "name": "Sanjay Kumar", "age": 24
+        "name": "Divya", "city": "Hyderabad"
     },
     {
-        "name": "Steve McLoud", "age": 43
-    },
-    {
-        "name": "Neil Gilmor", "age": 54
-    },
-    {
-        "name": "Michael Cordy", "age": 62
+        "name": "Suneel", "city": "Ludhiana"
     }
 ]
