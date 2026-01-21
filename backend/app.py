@@ -12,12 +12,14 @@ CORS(app)
 MONGODB_URL = os.getenv("MONGODBURL")
 DB_NAME = os.getenv("DB_NAME")
 collection = os.getenv("MEMBER_COLLECTION")
+items_collection = os.getenv("TODO_COLLECTION")
 
 print("MONGODB_URL", MONGODB_URL)
 
 client: MongoClient = MongoClient(MONGODB_URL)
 db = client[DB_NAME]
 members = db[collection]
+todoItems = db[items_collection]
 
 
 @app.route("/heartbeat", methods=["GET"])
@@ -61,6 +63,30 @@ def registration():
             return make_response(jsonify({ "name": name, "age":age }), 200)
         except Exception as e:
             print(e)
+            return make_response(jsonify({ "db_error": "Failed to add the reord to db"}), 513)
+
+@app.route("/submittodoitem", methods=["POST"])
+def registration():
+    jsonData = request.get_json()
+    form_errors = {}
+   
+    name  = jsonData.get("itemName")
+    description = jsonData.get("itemDescription") or None
+
+    if not name:
+        form_errors["name"] = "Item name is a required field"    
+
+    if(len(form_errors)):
+        return make_response(jsonify(form_errors), 422)
+    else:
+        try:
+            userData = { "name": name, "description": description }
+            data = todoItems.insert_one(userData)
+
+            return make_response(jsonify({ "name": name, "description": description }), 200)
+        except Exception as e:
+            print(e)
+            
             return make_response(jsonify({ "db_error": "Failed to add the reord to db"}), 513)
     
 
