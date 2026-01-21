@@ -17,8 +17,14 @@
                     <label for="name" class="form-label">Item Name:</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter Item name:" required value="<%= formData.name %>" />
                 </div>
+
                 <div class="mb-3">
-                    <label for="age" class="form-label">Item Description:</label>
+                    <label for="item_id" class="form-label">Item ID:</label>
+                    <input type="text" class="form-control" id="item_id" name="item_id" placeholder="Enter Item ID:" required value="<%= formData.item_id %>" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Item Description:</label>
                     <textarea class="form-control" id="description" name="description" placeholder="Item Description:" required value="<%= formData.description %>"></textarea> </textarea>
                     <br />
                     <button type="submit" class="btn btn-success w-100">Submit</button>
